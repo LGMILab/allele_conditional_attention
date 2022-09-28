@@ -1,3 +1,11 @@
+data/
+tensorboard/
+ems/data/
+ckpts/
+models_og/
+lightning_logs/
+inferred_csvs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
