@@ -1,0 +1,33 @@
+logger:
+  project_name: doxxitxxyoung/neoantigen-affinity
+  tags:
+      - testing
+      - binding affinity
+task:
+  dataset: affinity
+  description: Binding affinity prediction for peptide-HLA pairs.
+  type: regression
+  metric: mse
+  labels: binding affinity
+
+dataset_params:
+  data_dir: .
+  data_filename:  mj_class_train_gmm_phase1.csv
+  dataset_name: affinity
+  hla_sequences_filename: hla_sequences_cut181_0309.csv
+  val_ratio: 0.1
+  batch_size: 512
+  experiment_identifier: all_data
+  weighted_sampling: False
+  weighted_sampling_bins: 10
+  peptide_max_len: 14
+  hla_max_len: 182 # class 1
+  use_blosum: True
+  use_assay_features: False
+  assay_features_dim: 0
+  use_test_as_val: True
+  pca_components: 19
+  overwrite: False
+  classes: null
+  task: affinity
+  msa: False

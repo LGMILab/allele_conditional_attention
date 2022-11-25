@@ -1,0 +1,49 @@
+includes:
+    - configs/base_affinity.yml
+
+model_name: transformer
+
+train_params:
+    early_stop: False
+    # early_stop: True
+    # monitor: val_loss
+    # monitor_mode: min
+    monitor: valid_spearman_corr
+    monitor_mode: max
+    # monitor: valid_avg_auroc
+    # monitor_mode: max
+    save_top_k: 5
+    # patience: 500 # for multi-gpu usage
+    patience: 1000
+    use_weight_loss: False
+    use_inequality_loss: True
+    # use_inequality_loss: False
+
+    optimizer:
+        name: AdamW
+        lr: 1.0e-3
+        wd: 1.0e-6
+        
+
+    scheduler:
+        name: CosineWithWarmup
+        params:
+            num_warmup_steps: 750
+            num_training_steps: 1500
+            num_cycles: 0.5
+        
+model_params:
+    token_dim_peptide: 39
+    token_dim_hla: 1280
+    pre_ln: False
+    hidden_dim: 256
+    n_heads: 4
+    n_layers_decoder: 4
+    cnn_pool_channels: 8
+    dropout: 0.3
+    activation: relu
+    pretrained: False
+    # pretrained_weights_path: null
+    inference_weights_path: null
+    num_classes: 1
+    init_type: null

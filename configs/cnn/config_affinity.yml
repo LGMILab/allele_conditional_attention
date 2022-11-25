@@ -1,0 +1,50 @@
+includes:
+  - configs/base_affinity.yml
+
+model_name: cnn
+
+train_params:
+    early_stop: False
+    monitor: valid_spearman_corr
+    monitor_mode: max
+    save_top_k: 5
+    patience: 1000
+    use_weight_loss: False
+    # use_inequality_loss: True
+    use_inequality_loss: False
+
+    optimizer:
+        name: AdamW
+        lr: 5.0e-4
+        wd: 1.0e-6
+
+    scheduler:
+        name: ReduceLROnPlateau
+        params:
+            mode: min
+            factor: 0.5
+            patience: 20
+            threshold: 1.0e-3
+            cooldown: 5
+            min_lr: 1.0e-7
+
+    swa:
+        use_swa: False
+        swa_epoch_start: 100
+        annealing_epochs: 100
+        swa_lrs: 1.0e-4
+        annealing_strategy: linear
+
+model_params:
+    token_dim_peptide: 39
+    token_dim_hla: 1280
+    hidden_dim_peptide: 256
+    hidden_dim_hla: 256
+    seq_len_hla: 182
+    n_layers_peptide: 4
+    cnn_out_channels_hla: 8
+    dropout: 0.3
+    pretrained: False
+    inference_weights_path: null
+    num_classes: 1
+

@@ -1,0 +1,47 @@
+includes:
+    - configs/base_affinity.yml
+
+model_name: bertlike
+
+train_params:
+    early_stop: False
+    monitor: valid_spearman_corr
+    monitor_mode: max
+    save_top_k: 5
+    patience: 1000
+    use_weight_loss: False
+    use_inequality_loss: False
+
+    optimizer:
+        name: AdamW
+        lr: 5.0e-4
+        wd: 1.0e-8
+
+    scheduler:
+        name: CosineWithWarmup
+        params:
+            num_warmup_steps: 750
+            num_training_steps: 1500
+            num_cycles: 0.5
+    
+    swa:
+        use_swa: False
+        swa_epoch_start: 200
+        annealing_epochs: 100
+        swa_lrs: 1.0e-4
+        annealing_strategy: linear
+
+model_params:
+    token_dim_peptide: 39
+    token_dim_hla: 1280
+    pre_ln: False
+    hidden_dim: 256
+    n_heads: 4
+    n_layers_decoder: 4
+    cnn_pool_channels: 8
+    dropout: 0.3
+    activation: relu
+    pretrained: False
+    inference_weights_path: null
+    num_classes: 1
+    init_type: null
