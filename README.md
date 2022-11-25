@@ -1,5 +1,5 @@
 
-# My Paper Title
+# Allele-conditional attention mechanism for HLA-peptide complex binding affinity prediction
 
 This repository is the official implementation of [Allele-conditional attention mechanism for
 HLA-peptide complex binding affinity prediction]. 
@@ -26,6 +26,7 @@ To train the model(s) in the paper, run commands like:
 bash run_5fold_train_{model_name}.sh
 ```
 Available model_names are: 
+
 {transformer(Conditional attention), 
  bertlike(Bert attention),
  cross_transformer(Cross attention),
@@ -36,7 +37,9 @@ To evaluate certain model architecture, you can comment out rest of the code and
 You can select gpu device number for each fold with --gpu_id arguments.
 
 Changing featurization scheme and pooling scheme is also possible,
+
 by selecting --emb_type among {"aa2"(AA+AA), "aa+esm"(AA+ESM), "re"(Learned Embedding)} 
+
 and --pool_type among {"average"(Mean pooling), "conv"(Learned weighting), "token"([CLS] token)}
 
 <!-- >📋  Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters. -->
