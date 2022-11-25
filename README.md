@@ -4,7 +4,9 @@
 This repository is the official implementation of [Allele-conditional attention mechanism for
 HLA-peptide complex binding affinity prediction]. 
 
->📋  Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials
+<!-- >📋  Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials -->
+<img src="diagrams/figure1.png">
+<img src="diagrams/figure2.png">
 
 ## Requirements
 
@@ -14,7 +16,7 @@ To install requirements:
 conda env create -f environments.yml
 ```
 
->📋  Describe how to set up the environment, e.g. pip/conda/docker commands, download datasets, etc...
+<!-- >📋  Describe how to set up the environment, e.g. pip/conda/docker commands, download datasets, etc... -->
 
 ## Training
 
@@ -37,7 +39,7 @@ Changing featurization scheme and pooling scheme is also possible,
 by selecting --emb_type among {"aa2"(AA+AA), "aa+esm"(AA+ESM), "re"(Learned Embedding)} 
 and --pool_type among {"average"(Mean pooling), "conv"(Learned weighting), "token"([CLS] token)}
 
->📋  Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters.
+<!-- >📋  Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters. -->
 
 ## Evaluation
 
@@ -50,8 +52,8 @@ To evaluate certain model architecture, you can comment out rest of the code and
 
 You can select gpu device number for each fold with --gpu_id arguments.
 
->📋  Describe how to evaluate the trained models on benchmarks reported in the paper, give commands that produce the results (section below).
-
+<!-- >📋  Describe how to evaluate the trained models on benchmarks reported in the paper, give commands that produce the results (section below). -->
+<!-- 
 ## Pre-trained Models
 
 You can download pretrained models here:
@@ -75,4 +77,4 @@ Our model achieves the following performance on :
 
 ## Contributing
 
->📋  Pick a licence and describe how to contribute to your code repository. 
+>📋  Pick a license and describe how to contribute to your code repository.  -->
