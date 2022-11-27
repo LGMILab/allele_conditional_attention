@@ -2,16 +2,11 @@ import pytorch_lightning as pl
 
 from lightning_modules import AffinityPL
 from dataset import AffinityDataModule
-# from lightning_modules_range import AffinityPL
-# from dataset_range import AffinityDataModule
 
 
-# from pytorch_lightning.strategies.ddp import DDPStrategy
 from pytorch_lightning.plugins import DDPPlugin
-# from pytorch_lightning.callbacks import StochasticWeightAveraging
 
 from commons.utils import load_yml_config, setup_neptune_logger, setup_tensorboard_logger
-# from neptune_key import neptune_api_token
 import os
 from pathlib import Path
 
@@ -88,10 +83,6 @@ if __name__ == "__main__":
         args.gpu_id = [int(args.gpu_id)]
 
     config['dataset_params']['emb_type'] = args.emb_type
-    if config['dataset_params']['emb_type'] == 'esm2':
-        # config['dataset_params']['use_esm'] = True
-        config['model_params']['token_dim_peptide'] = config['model_params']['token_dim_hla']
-        config['dataset_params']['peptide_max_len'] += 1
 
     config['model_params']['pool_type'] = args.pool_type
     # add one more layer for aggregating attentions w.r.t. tokens
@@ -106,16 +97,8 @@ if __name__ == "__main__":
     elif args.logger == 'tensorboard':
         logger = setup_tensorboard_logger(config, args) if args.logger else None
 
-    # Import lightning module, dataset for chosen model
-    # if args.mhc_class == 1:
         if args.model == 'bertmhc':
             from dataset_bertmhc import AffinityDataModule
-    # elif args.mhc_class == 2:
-    #     from lightning_modules2 import AffinityPL
-    #     from dataset2 import AffinityDataModule
-    #     if args.model == 'bertmhc':
-    #         from dataset_bertmhc import AffinityDataModule
-
     # set seeds
     pl.seed_everything(args.seed)
 

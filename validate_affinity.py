@@ -5,7 +5,6 @@ from lightning_modules import AffinityPL
 from dataset import AffinityDataModule
 
 from commons.utils import load_yml_config, setup_neptune_logger
-# from neptune_key import neptune_api_token
 
 import argparse
 
@@ -74,24 +73,15 @@ if __name__ == "__main__":
     config['dataset_params']['num_workers'] = args.num_workers
     config['dataset_params']['data_filename'] = args.data_filename
     config['dataset_params']['test_data_filename'] = args.test_data_filename
-    # 
-    # config['dataset_params']['overwrite'] = True
-    
-    # if args.classes != []:
-    #     config['dataset_params']['classes'] = args.classes
-    # else:
-    #     config['dataset_params']['classes'] = None
     
     config['train_params']['seed'] = args.seed
     if args.resume_from_checkpoint is not None:
         config['model_params']['pretrained_weights_path'] = args.resume_from_checkpoint
     
-    # config['dataset_params']['inference'] = True
     config['dataset_params']['inference'] = False # For validation settings
 
     config['dataset_params']['emb_type'] = args.emb_type
     if config['dataset_params']['emb_type'] == 'esm2':
-        # config['dataset_params']['use_esm'] = True
         config['model_params']['token_dim_peptide'] = config['model_params']['token_dim_hla']
         config['dataset_params']['peptide_max_len'] += 1
     if config['dataset_params']['emb_type'] in ['re']:
@@ -101,12 +91,6 @@ if __name__ == "__main__":
     # add one more layer for aggregating attentions w.r.t. tokens
     if config['model_params']['pool_type'] == 'token':
         config['model_params']['n_layers_decoder'] += 1
-    
-    # Import lightning module, dataset for chosen model
-    if args.model == 'bertmhc':
-        from dataset_bertmhc import AffinityDataModule
-    elif args.model == 'transphla':
-        from dataset_transphla import AffinityDataModule
 
     # set seeds
     pl.seed_everything(args.seed)
@@ -189,14 +173,6 @@ if __name__ == "__main__":
     target = output_dict['reg_targets']
     perfs = {}
     
-    # if args.classes != []:
-    #     reg_preds_cls = onehot2cls(logits_mean)
-    #     reg_targets_cls = onehot2cls(target)
-    #     df['reg_preds_cls'] = reg_preds_cls
-    #     df['reg_targets_cls'] = reg_targets_cls
-    #     for i in range(len(args.classes)-1):
-    #         df['reg_pred'+str(i)] = logits_mean[:,i]
-    # else:
     df['reg_preds'] = logits_mean
     df['reg_targets'] = target
 
@@ -205,15 +181,6 @@ if __name__ == "__main__":
                     .loc[:,'reg_preds'].values
     target = df.loc[df['assay_measurement_inequality']=='='].reset_index(drop=True)\
                     .loc[:,'reg_targets'].values
-    
-    # if len(args.classes) > 1:
-    #     """
-    #     Multi class metric -> averaged score of each class
-    #     """
-
-    #     perfs['auroc'] = np.mean([roc_auc_score(target[:,i], logits_mean[:,i]) for i in range(len(args.classes)-1)])
-    #     perfs['auprc'] = np.mean([average_precision_score(target[:,i], logits_mean[:,i]) for i in range(len(args.classes)-1)])
-    # else:
 
     perfs['spearmanr'] = spearmanr(logits_mean, target)[0]
     perfs['pearsonr'] = pearsonr(logits_mean, target)[0]
