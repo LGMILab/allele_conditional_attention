@@ -127,8 +127,8 @@ class AffinityPL(pl.LightningModule):
                                                              cnn_pool_channels=self.model_params['cnn_pool_channels'],
                                                              dropout=self.model_params['dropout'],
                                                              activation=self.model_params['activation'],
-                                                             use_assay_features=self.use_assay_features,
-                                                             assay_features_dim=dataset_params['assay_features_dim'],
+                                                            #  use_assay_features=self.use_assay_features,
+                                                            #  assay_features_dim=dataset_params['assay_features_dim'],
                                                              num_classes=num_classes,
                                                              emb_type = dataset_params['emb_type'],
                                                              pool_type=self.model_params['pool_type'])
@@ -179,8 +179,8 @@ class AffinityPL(pl.LightningModule):
                                                              cnn_pool_channels=self.model_params['cnn_pool_channels'],
                                                              dropout=self.model_params['dropout'],
                                                              activation=self.model_params['activation'],
-                                                             use_assay_features=self.use_assay_features,
-                                                             assay_features_dim=dataset_params['assay_features_dim'],
+                                                            #  use_assay_features=self.use_assay_features,
+                                                            #  assay_features_dim=dataset_params['assay_features_dim'],
                                                              num_classes=num_classes,
                                                              emb_type = dataset_params['emb_type'],
                                                              pool_type=self.model_params['pool_type'])
@@ -196,8 +196,8 @@ class AffinityPL(pl.LightningModule):
                                                              cnn_pool_channels=self.model_params['cnn_pool_channels'],
                                                              dropout=self.model_params['dropout'],
                                                              activation=self.model_params['activation'],
-                                                             use_assay_features=self.use_assay_features,
-                                                             assay_features_dim=dataset_params['assay_features_dim'],
+                                                            #  use_assay_features=self.use_assay_features,
+                                                            #  assay_features_dim=dataset_params['assay_features_dim'],
                                                              num_classes=num_classes,
                                                              emb_type = dataset_params['emb_type'],
                                                              pool_type=self.model_params['pool_type'])
@@ -211,8 +211,8 @@ class AffinityPL(pl.LightningModule):
                                      n_layers_peptide=self.model_params['n_layers_peptide'],
                                      cnn_out_channels_hla=self.model_params['cnn_out_channels_hla'],
                                      dropout=self.model_params['dropout'],
-                                     use_assay_features=self.use_assay_features,
-                                     assay_features_dim=dataset_params['assay_features_dim'],
+                                    #  use_assay_features=self.use_assay_features,
+                                    #  assay_features_dim=dataset_params['assay_features_dim'],
                                      num_classes=num_classes,
                                      emb_type = dataset_params['emb_type'])
         
@@ -225,8 +225,8 @@ class AffinityPL(pl.LightningModule):
                                      n_layers_peptide=self.model_params['n_layers_peptide'],
                                      cnn_out_channels_hla=self.model_params['cnn_out_channels_hla'],
                                      dropout=self.model_params['dropout'],
-                                     use_assay_features=self.use_assay_features,
-                                     assay_features_dim=dataset_params['assay_features_dim'],
+                                    #  use_assay_features=self.use_assay_features,
+                                    #  assay_features_dim=dataset_params['assay_features_dim'],
                                      num_classes=num_classes,
                                     #  use_esm=dataset_params['use_esm'],
                                     #  use_aa=dataset_params['use_aa']
